@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema CRUD</title>
+</head>
+<body>
+
+    <h1>Sistema CRUD</h1>
+
+
+    <ul>
+    {% for pessoa in pessoas %} <!-- '{} + % é para comandos--->
+        <li>{{ pessoa.id }} - {{ pessoa.nome }}
+            <a href="{% url 'editar' pessoa.id %}">Editar</a> <!-- {}+{} é para variaveis--->
+            - <a href="{% url 'deletar' pessoa.id %}">Deletar</a></li>
+    {% endfor %}
+    </ul>
+
+    <form action="{% url 'salvar' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="nome">
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>
